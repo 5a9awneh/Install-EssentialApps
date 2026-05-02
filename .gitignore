@@ -1,0 +1,31 @@
+# Installer files — large binaries, not committed
+Software/
+*.exe
+*.msi
+*.msix
+*.msp
+*.msu
+*.iso
+*.cab
+*.appx
+*.appxbundle
+*.zip
+*.7z
+
+# Log output
+*.log
+
+# OS artifacts
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# IDE / editor artifacts
+.vscode/
+.idea/
+*.suo
+
+# Temp / backup files
+*.tmp
+*.bak
+*.orig
