@@ -8,6 +8,52 @@ An interactive terminal UI for bulk-installing software on fresh Windows machine
 
 ---
 
+```
+Software Installer
+Select applications to install:
+
+> [ ] Acrobat Reader
+  [ ] Google Chrome
+  [ ] Teams
+  [ ] K-Lite Codec Pack
+  [ ] 7-Zip
+  [ ] Microsoft Office 365
+  [ ] Azure Information Protection Viewer
+  [ ] .NET Desktop Runtime
+  [ ] Dell SupportAssist
+
+----------------------------------
+  [Space]       Select/Deselect
+  [Up/Down]     Move up/down
+  [Enter]       Install
+  [q]           Quit
+```
+
+```mermaid
+flowchart TD
+    A([Run-Install.bat\nUAC elevation]) --> B["TUI menu\n↑↓ navigate · Space select"]
+    B -- "Enter with\nno selection" --> B
+    B -- "Enter with\nselection" --> C[Install apps one by one]
+    B -- "Q" --> QUIT([Quit — no changes])
+    C --> D{Installer exit code?}
+    D -- "0 / 3010 / 1641" --> OK["✔ Logged OK"]
+    D -- "other" --> FAIL["✘ Logged FAIL\n(continue to next app)"]
+    OK --> E{More apps?}
+    FAIL --> E
+    E -- Yes --> C
+    E -- No --> F["Show restart prompt\n(5 s · default: No)"]
+    F --> DONE([Session complete])
+
+    classDef success fill:#2d6a2d,color:#fff,stroke:#1a3d1a
+    classDef failure fill:#8b1a1a,color:#fff,stroke:#5a0d0d
+    classDef warning fill:#7a5500,color:#fff,stroke:#4d3600
+    class OK,DONE success
+    class FAIL failure
+    class QUIT warning
+```
+
+---
+
 ## ✅ Requirements
 
 - Windows 10 / 11
