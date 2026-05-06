@@ -31,10 +31,9 @@ Select applications to install:
 
 ```mermaid
 flowchart TD
-    A([Run-Install.bat\nUAC elevation]) --> B["TUI menu\n↑↓ navigate · Space select"]
-    B -- "Enter with\nno selection" --> B
-    B -- "Enter with\nselection" --> C[Install apps one by one]
+    A([Run-Install.bat\nUAC elevation]) --> B["TUI menu\n↑↓ navigate · Space select · Enter to install"]
     B -- "Q" --> QUIT([Quit — no changes])
+    B -- "Enter" --> C[Install apps one by one]
     C --> D{Installer exit code?}
     D -- "0 / 3010 / 1641" --> OK["✔ Logged OK"]
     D -- "other" --> FAIL["✘ Logged FAIL\n(continue to next app)"]
